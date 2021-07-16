@@ -51,12 +51,16 @@ class GameScene: SKScene {
         self.ready.text = "Waiting For Opponent..."
         self.ready.fontSize = 65
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1){
+        sleep(1)
             while self.inGame == false{
-                let resp = self.net.send(data: "ready")
-                if resp == "game starting" {self.inGame = true}
+                var data = DataToSend()
+                data.looking_for_game = true
+                let resp = self.net.send(data: data)
+                if resp.in_game == true {self.inGame = true}
+                sleep(1)
             }
-        }
+        
+        
         ball.position = CGPoint(x:0, y:-300)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2){
@@ -96,7 +100,7 @@ class GameScene: SKScene {
             ready.text = "Tap to Begin"
             return
         }
-        
+
         if score[0] == 5{
             inGame = false
             ball.position = CGPoint(x:500, y:0)
@@ -149,8 +153,11 @@ class GameScene: SKScene {
                 startGame()
             }
             
-            let location = touch.location(in: self)
-            mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
+            if inGame == true{
+                let location = touch.location(in: self)
+                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
+            }
+        
       
     }
     
@@ -167,12 +174,12 @@ class GameScene: SKScene {
         
         if inGame == true{
             
-            let location = String(Int(Float(mainPaddle.position.x)))
-            let data = net.send(data: location)
+            var data = DataToSend()
+            data.paddle_position = Int(Float(mainPaddle.position.x))
             
-            guard let enemyLocation = NumberFormatter().number(from: data) else {return}
+            let resp = net.send(data: data)
             
-            enemyPaddle.run(SKAction.moveTo(x: CGFloat(enemyLocation), duration: 0))
+            enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
             
             
             

@@ -12,7 +12,6 @@ import SwiftSocket
 let address = "66.189.22.25"
 let port:Int32 = 5051
 
-
 class Network {
     
     let address: String
@@ -38,23 +37,33 @@ class Network {
     }
     
     
-    func send(data: String) -> String {
+    func send(data: DataToSend) -> DataToReceive {
         
-        switch client.send(string: data){
+        let jsonData = try! JSONEncoder().encode(data)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        
+        let errorMessage = DataToReceive(error: "There was error dumbass")
+        
+        switch client.send(string: jsonString){
         
             case .success:
-                guard let data = client.read(1024*10, timeout: 1) else {return "failure"}
+                guard let data = client.read(1024*10, timeout: 1) else {return errorMessage}
                 if let response = String(bytes: data, encoding: .utf8){
+                    
                     print(response)
-                    return response
+                    let responseString = response.data(using: .utf8)!
+                    let responseStruct = try! JSONDecoder().decode(DataToReceive.self, from: responseString)
+                    print(responseStruct)
+                    return responseStruct
+                    
                 }
                 
             case .failure(let error):
                 print(error)
-                return "failure"
+                return errorMessage
         
             }
-        return "failure"
+        return errorMessage
     }
     
     

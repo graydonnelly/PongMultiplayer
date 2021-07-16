@@ -15,6 +15,7 @@
 		6A2E7EEB237B7B7E002629ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE9237B7B7E002629ED /* Main.storyboard */; };
 		6A2E7EED237B7B91002629ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EEC237B7B91002629ED /* Assets.xcassets */; };
 		6A2E7EF8237B7C25002629ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EF7237B7C25002629ED /* LaunchScreen.storyboard */; };
+		7822D43526A2250C00EFF1C4 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D43426A2250C00EFF1C4 /* NetworkData.swift */; };
 		78AD3BF526A0915C002D149B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD3BF426A0915C002D149B /* Network.swift */; };
 		78E56880267658D8000B05C1 /* Pods_Pong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5CF354F43686A5D21B1873D /* Pods_Pong.framework */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		6A2E7EEC237B7B91002629ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A2E7EF1237B7B91002629ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A2E7EF7237B7C25002629ED /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7822D43426A2250C00EFF1C4 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		78AD3BF426A0915C002D149B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F5CF354F43686A5D21B1873D /* Pods_Pong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 				6A2E7EE1237B7B7E002629ED /* GameScene.sks */,
 				6A2E7EE3237B7B7E002629ED /* Actions.sks */,
 				6A2E7EE5237B7B7E002629ED /* GameScene.swift */,
+				7822D43426A2250C00EFF1C4 /* NetworkData.swift */,
 				78AD3BF426A0915C002D149B /* Network.swift */,
 				6A2E7EE7237B7B7E002629ED /* GameViewController.swift */,
 				6A2E7EE9237B7B7E002629ED /* Main.storyboard */,
@@ -220,6 +223,7 @@
 				6A2E7EE6237B7B7E002629ED /* GameScene.swift in Sources */,
 				6A2E7EE8237B7B7E002629ED /* GameViewController.swift in Sources */,
 				78AD3BF526A0915C002D149B /* Network.swift in Sources */,
+				7822D43526A2250C00EFF1C4 /* NetworkData.swift in Sources */,
 				6A2E7EE0237B7B7E002629ED /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
