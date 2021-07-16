@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A2E7EE0237B7B7E002629ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E7EDF237B7B7E002629ED /* AppDelegate.swift */; };
+		6A2E7EE2237B7B7E002629ED /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE1237B7B7E002629ED /* GameScene.sks */; };
+		6A2E7EE4237B7B7E002629ED /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE3237B7B7E002629ED /* Actions.sks */; };
+		6A2E7EE6237B7B7E002629ED /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE5237B7B7E002629ED /* GameScene.swift */; };
+		6A2E7EE8237B7B7E002629ED /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE7237B7B7E002629ED /* GameViewController.swift */; };
+		6A2E7EEB237B7B7E002629ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EE9237B7B7E002629ED /* Main.storyboard */; };
+		6A2E7EED237B7B91002629ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EEC237B7B91002629ED /* Assets.xcassets */; };
+		6A2E7EF8237B7C25002629ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A2E7EF7237B7C25002629ED /* LaunchScreen.storyboard */; };
+		78AD3BF526A0915C002D149B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AD3BF426A0915C002D149B /* Network.swift */; };
+		78E56880267658D8000B05C1 /* Pods_Pong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5CF354F43686A5D21B1873D /* Pods_Pong.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		144BB95A1684D580C5CFB588 /* Pods-Pong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pong.debug.xcconfig"; path = "Target Support Files/Pods-Pong/Pods-Pong.debug.xcconfig"; sourceTree = "<group>"; };
+		4340EFF9F067F8B166D2E485 /* Pods-Pong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pong.release.xcconfig"; path = "Target Support Files/Pods-Pong/Pods-Pong.release.xcconfig"; sourceTree = "<group>"; };
+		6A2E7EDC237B7B7E002629ED /* Pong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2E7EDF237B7B7E002629ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6A2E7EE1237B7B7E002629ED /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		6A2E7EE3237B7B7E002629ED /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		6A2E7EE5237B7B7E002629ED /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		6A2E7EE7237B7B7E002629ED /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		6A2E7EEA237B7B7E002629ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6A2E7EEC237B7B91002629ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A2E7EF1237B7B91002629ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A2E7EF7237B7C25002629ED /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		78AD3BF426A0915C002D149B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F5CF354F43686A5D21B1873D /* Pods_Pong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A2E7ED9237B7B7E002629ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78E56880267658D8000B05C1 /* Pods_Pong.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C6EEC7BBB3B63037EFAFDBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				144BB95A1684D580C5CFB588 /* Pods-Pong.debug.xcconfig */,
+				4340EFF9F067F8B166D2E485 /* Pods-Pong.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5E682E231D24DB4397203C6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5CF354F43686A5D21B1873D /* Pods_Pong.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A2E7ED3237B7B7E002629ED = {
+			isa = PBXGroup;
+			children = (
+				6A2E7EDE237B7B7E002629ED /* Pong */,
+				6A2E7EDD237B7B7E002629ED /* Products */,
+				1C6EEC7BBB3B63037EFAFDBD /* Pods */,
+				5E682E231D24DB4397203C6B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6A2E7EDD237B7B7E002629ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A2E7EDC237B7B7E002629ED /* Pong.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A2E7EDE237B7B7E002629ED /* Pong */ = {
+			isa = PBXGroup;
+			children = (
+				6A2E7EDF237B7B7E002629ED /* AppDelegate.swift */,
+				6A2E7EE1237B7B7E002629ED /* GameScene.sks */,
+				6A2E7EE3237B7B7E002629ED /* Actions.sks */,
+				6A2E7EE5237B7B7E002629ED /* GameScene.swift */,
+				78AD3BF426A0915C002D149B /* Network.swift */,
+				6A2E7EE7237B7B7E002629ED /* GameViewController.swift */,
+				6A2E7EE9237B7B7E002629ED /* Main.storyboard */,
+				6A2E7EEC237B7B91002629ED /* Assets.xcassets */,
+				6A2E7EF1237B7B91002629ED /* Info.plist */,
+				6A2E7EF7237B7C25002629ED /* LaunchScreen.storyboard */,
+			);
+			path = Pong;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A2E7EDB237B7B7E002629ED /* Pong */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A2E7EF4237B7B91002629ED /* Build configuration list for PBXNativeTarget "Pong" */;
+			buildPhases = (
+				1820BA9922EAB08FEF033D6D /* [CP] Check Pods Manifest.lock */,
+				6A2E7ED8237B7B7E002629ED /* Sources */,
+				6A2E7ED9237B7B7E002629ED /* Frameworks */,
+				6A2E7EDA237B7B7E002629ED /* Resources */,
+				69CC366BF05D3A03CAA089D5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pong;
+			productName = Pong;
+			productReference = 6A2E7EDC237B7B7E002629ED /* Pong.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A2E7ED4237B7B7E002629ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Go Deep Games";
+				TargetAttributes = {
+					6A2E7EDB237B7B7E002629ED = {
+						CreatedOnToolsVersion = 11.2;
+					};
+				};
+			};
+			buildConfigurationList = 6A2E7ED7237B7B7E002629ED /* Build configuration list for PBXProject "Pong" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A2E7ED3237B7B7E002629ED;
+			productRefGroup = 6A2E7EDD237B7B7E002629ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A2E7EDB237B7B7E002629ED /* Pong */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6A2E7EDA237B7B7E002629ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2E7EEB237B7B7E002629ED /* Main.storyboard in Resources */,
+				6A2E7EE2237B7B7E002629ED /* GameScene.sks in Resources */,
+				6A2E7EED237B7B91002629ED /* Assets.xcassets in Resources */,
+				6A2E7EF8237B7C25002629ED /* LaunchScreen.storyboard in Resources */,
+				6A2E7EE4237B7B7E002629ED /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1820BA9922EAB08FEF033D6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pong-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69CC366BF05D3A03CAA089D5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pong/Pods-Pong-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pong/Pods-Pong-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pong/Pods-Pong-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A2E7ED8237B7B7E002629ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2E7EE6237B7B7E002629ED /* GameScene.swift in Sources */,
+				6A2E7EE8237B7B7E002629ED /* GameViewController.swift in Sources */,
+				78AD3BF526A0915C002D149B /* Network.swift in Sources */,
+				6A2E7EE0237B7B7E002629ED /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6A2E7EE9237B7B7E002629ED /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A2E7EEA237B7B7E002629ED /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6A2E7EF2237B7B91002629ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6A2E7EF3237B7B91002629ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6A2E7EF5237B7B91002629ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 144BB95A1684D580C5CFB588 /* Pods-Pong.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2TUX5NRYQ;
+				INFOPLIST_FILE = Pong/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Pong;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A2E7EF6237B7B91002629ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4340EFF9F067F8B166D2E485 /* Pods-Pong.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K2TUX5NRYQ;
+				INFOPLIST_FILE = Pong/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.organization.Pong;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A2E7ED7237B7B7E002629ED /* Build configuration list for PBXProject "Pong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A2E7EF2237B7B91002629ED /* Debug */,
+				6A2E7EF3237B7B91002629ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A2E7EF4237B7B91002629ED /* Build configuration list for PBXNativeTarget "Pong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A2E7EF5237B7B91002629ED /* Debug */,
+				6A2E7EF6237B7B91002629ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6A2E7ED4237B7B7E002629ED /* Project object */;
+}
