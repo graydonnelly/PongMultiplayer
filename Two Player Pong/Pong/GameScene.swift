@@ -54,9 +54,10 @@ class GameScene: SKScene {
         sleep(1)
             while self.inGame == false{
                 var data = DataToSend()
-                data.looking_for_game = true
+                data.looking_for_game = "true"
                 let resp = self.net.send(data: data)
-                if resp.in_game == true {self.inGame = true}
+                print(resp)
+                if resp.in_game == "true" {self.inGame = true}
                 sleep(1)
             }
         
@@ -110,20 +111,21 @@ class GameScene: SKScene {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2){
-            self.ready.text = ""
+        sleep(2)
+        
+        self.ready.text = ""
                     
-            if playerWhoWon == self.mainPaddle{
-                let velocity: Int! = Int(arc4random_uniform(35)+5)
-                let negVelocity: Int! = 0 - velocity
-                self.ball.physicsBody?.applyImpulse(CGVector(dx: negVelocity, dy: -20))
-            }
-            
-            if playerWhoWon == self.enemyPaddle{
-                let velocity: Int! = Int(arc4random_uniform(35)+5)
-                self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
-            }
+        if playerWhoWon == self.mainPaddle{
+            let velocity: Int! = Int(arc4random_uniform(35)+5)
+            let negVelocity: Int! = 0 - velocity
+            self.ball.physicsBody?.applyImpulse(CGVector(dx: negVelocity, dy: -20))
         }
+            
+        if playerWhoWon == self.enemyPaddle{
+            let velocity: Int! = Int(arc4random_uniform(35)+5)
+            self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
+        }
+        
         
         
     }
@@ -133,9 +135,13 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch in touches {
-            //move the paddle to the location
-            let location = touch.location(in: self)
-            mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
+            
+            if inGame == true{
+                //move the paddle to the location
+                let location = touch.location(in: self)
+                mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
+            }
+            
         }
         
     }
@@ -179,7 +185,10 @@ class GameScene: SKScene {
             
             let resp = net.send(data: data)
             
-            enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
+            if resp.enemy_paddle_position != nil{
+                enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
+            }
+    
             
             
             

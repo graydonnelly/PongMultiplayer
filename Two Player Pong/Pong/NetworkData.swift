@@ -9,14 +9,14 @@
 import Foundation
 
 struct DataToReceive:Codable{
-    var in_game: Bool? = nil
+    var in_game: String? = nil
     var enemy_paddle_position: Int? = nil
     var ball_initial_velocity: Int? = nil
     var error: String? = nil
 }
 
 struct DataToSend:Codable{
-    var looking_for_game: Bool? = nil
+    var looking_for_game: String? = nil
     var paddle_position: Int? = nil
     var point_winner: Int? = nil
 }
