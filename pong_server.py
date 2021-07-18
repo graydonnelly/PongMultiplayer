@@ -50,6 +50,7 @@ def start():
 
     server.listen(2)
     print(f"[LISTENING] Server is listening on {HOST}")
+    
     while True:
         conn, addr = server.accept()
         thread = threading.Thread(target=handle_client, args=(conn,addr))

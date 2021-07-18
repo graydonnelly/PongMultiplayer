@@ -11,7 +11,7 @@ import Foundation
 struct DataToReceive:Codable{
     var in_game: String? = nil
     var enemy_paddle_position: Int? = nil
-    var ball_initial_velocity: Int? = nil
+    var ball_initial_velocity: [Int]? = nil
     var error: String? = nil
 }
 

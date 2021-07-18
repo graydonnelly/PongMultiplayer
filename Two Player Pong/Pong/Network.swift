@@ -47,7 +47,7 @@ class Network {
         switch client.send(string: jsonString){
         
             case .success:
-                guard let data = client.read(1024*10, timeout: 1) else {return errorMessage}
+                guard let data = client.read(1024*10, timeout: 30) else {return errorMessage}
                 if let response = String(bytes: data, encoding: .utf8){
                     
                     print(response)

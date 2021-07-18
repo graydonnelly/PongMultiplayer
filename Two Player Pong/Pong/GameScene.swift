@@ -23,6 +23,8 @@ class GameScene: SKScene {
     var logo = SKSpriteNode()
     var pong = SKLabelNode()
     let net = Network()
+    var startingVelocities = [Int]()
+    var pointNumber = 0
     
     override func didMove(to view: SKView) {
         
@@ -48,18 +50,18 @@ class GameScene: SKScene {
     
     func startGame() {
         
+        self.pointNumber = 0
         self.ready.text = "Waiting For Opponent..."
         self.ready.fontSize = 65
         
-        sleep(1)
-            while self.inGame == false{
-                var data = DataToSend()
-                data.looking_for_game = "true"
-                let resp = self.net.send(data: data)
-                print(resp)
-                if resp.in_game == "true" {self.inGame = true}
-                sleep(1)
-            }
+        var data = DataToSend()
+        data.looking_for_game = "true"
+        let resp = self.net.send(data: data)
+        self.startingVelocities = resp.ball_initial_velocity!
+        print(resp)
+        self.inGame = true
+                
+            
         
         
         ball.position = CGPoint(x:0, y:-300)
@@ -67,7 +69,7 @@ class GameScene: SKScene {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2){
             self.ready.text = ""
             self.ready.fontSize = 100
-            let velocity: Int! = Int(arc4random_uniform(35)+5)
+            let velocity: Int! = self.startingVelocities[self.pointNumber]
             self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
             self.score = [0,0]
             self.playerTwoScore.text = "0"
@@ -77,9 +79,10 @@ class GameScene: SKScene {
     
     
     func addScore(playerWhoWon: SKSpriteNode){
+        
         ready.text = "Ready"
         ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        
+        self.pointNumber += 1
         
         if playerWhoWon == mainPaddle{
             ball.position = CGPoint(x:0, y:300)
@@ -111,22 +114,22 @@ class GameScene: SKScene {
             return
         }
         
-        sleep(2)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2){
         
-        self.ready.text = ""
-                    
-        if playerWhoWon == self.mainPaddle{
-            let velocity: Int! = Int(arc4random_uniform(35)+5)
-            let negVelocity: Int! = 0 - velocity
-            self.ball.physicsBody?.applyImpulse(CGVector(dx: negVelocity, dy: -20))
+            self.ready.text = ""
+                        
+            if playerWhoWon == self.mainPaddle{
+                let velocity: Int! = self.startingVelocities[self.pointNumber]
+                let negVelocity: Int! = 0 - velocity
+                self.ball.physicsBody?.applyImpulse(CGVector(dx: negVelocity, dy: -20))
+            }
+                
+            if playerWhoWon == self.enemyPaddle{
+                let velocity: Int! = self.startingVelocities[self.pointNumber]
+                self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
+            }
+        
         }
-            
-        if playerWhoWon == self.enemyPaddle{
-            let velocity: Int! = Int(arc4random_uniform(35)+5)
-            self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
-        }
-        
-        
         
     }
     
@@ -188,6 +191,7 @@ class GameScene: SKScene {
             if resp.enemy_paddle_position != nil{
                 enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
             }
+            
     
             
             
