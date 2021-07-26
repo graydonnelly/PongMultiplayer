@@ -1,61 +1,47 @@
 import json
 import ast
 import random
+from data_to_send import get_data_to_send
 
 class Game:
 
+    p1_conn = None
+    p2_conn = None
+
     def __init__(self):
-
         self.in_game = False
-        self.p1_conn, self.p2_conn = (None, None)
         self.p1_pos, self.p2_pos = (0,0)
-        self.ball_velocities = [random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35)]
+        self.p1_ready, self.p2_ready = (False, False)
+        self.ball_velocities = [0,random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35),random.randint(5,35)]
 
-   
 
-    def handler(self, msg, conn):
+    def handler(self, msg, conn, data):
 
-        data_to_send = {"in_game":None, "enemy_paddle_position":None, "ball_initial_velocity":self.ball_velocities}
+        data["initial_velocities"] = self.ball_velocities
 
-        if len(msg) == 0:
-            print("CONNECTION BROKEN")
+        if msg["looking_for_game"]: 
             if conn == self.p1_conn:
-                self.p1_conn = None
+                self.p1_ready = True
             if conn == self.p2_conn:
-                self.p2_conn = None
+                self.p2_ready = True
 
-        else:
+            data["in_game"] = False
+            if self.p1_ready and self.p2_ready:
+                self.in_game = True
+                data["in_game"] = True
+        
+        if self.in_game and msg["paddle_position"]:
 
-            msg = json.loads(msg)
-
+            if conn == self.p1_conn:
+                self.p1_pos = float(msg["paddle_position"])
+                data["enemy_paddle_position"] = self.p2_pos
             
-            if not self.p1_conn:
-                self.p1_conn = conn
+            if conn == self.p2_conn:
+                self.p2_pos = float(msg["paddle_position"])
+                data["enemy_paddle_position"] = self.p1_pos
 
-            if not self.p2_conn:
-                if conn != self.p1_conn:
-                    self.p2_conn = conn
-
-            if "looking_for_game" in msg.keys(): 
-                if msg["looking_for_game"] == "true":
-
-                    while self.in_game == False:
-                        if self.p1_conn and self.p2_conn:
-                            self.in_game = True
-                            data_to_send["in_game"] = "true"
-                            return json.dumps(data_to_send)
-            
-            if self.in_game == True:
-
-                if conn == self.p1_conn:
-                    self.p1_pos = float(msg["paddle_position"])
-                    data_to_send["enemy_paddle_position"] = self.p2_pos
-                
-                if conn == self.p2_conn:
-                    self.p2_pos = float(msg["paddle_position"])
-                    data_to_send["enemy_paddle_position"] = self.p1_pos
-
-        return json.dumps(data_to_send)
+       
+        return data
 
 
 

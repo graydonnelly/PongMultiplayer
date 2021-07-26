@@ -40,7 +40,9 @@ class Network {
     func send(data: DataToSend) -> DataToReceive {
         
         let jsonData = try! JSONEncoder().encode(data)
+        print("jsonData:", jsonData)
         let jsonString = String(data: jsonData, encoding: .utf8)!
+        print("jsonString:", jsonString)
         
         let errorMessage = DataToReceive(error: "There was error dumbass")
         
@@ -50,10 +52,10 @@ class Network {
                 guard let data = client.read(1024*10, timeout: 30) else {return errorMessage}
                 if let response = String(bytes: data, encoding: .utf8){
                     
-                    print(response)
+                    //print(response)
                     let responseString = response.data(using: .utf8)!
                     let responseStruct = try! JSONDecoder().decode(DataToReceive.self, from: responseString)
-                    print(responseStruct)
+                    //print(responseStruct)
                     return responseStruct
                     
                 }

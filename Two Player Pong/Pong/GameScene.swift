@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 
+
 class GameScene: SKScene {
     
     //initial variable setup
@@ -22,9 +23,10 @@ class GameScene: SKScene {
     var inGame = false
     var logo = SKSpriteNode()
     var pong = SKLabelNode()
-    let net = Network()
     var startingVelocities = [Int]()
+    var starting = Bool()
     var pointNumber = 0
+    let net = Network()
     
     override func didMove(to view: SKView) {
         
@@ -54,23 +56,31 @@ class GameScene: SKScene {
         self.ready.text = "Waiting For Opponent..."
         self.ready.fontSize = 65
         
-        var data = DataToSend()
-        data.looking_for_game = "true"
-        let resp = self.net.send(data: data)
-        self.startingVelocities = resp.ball_initial_velocity!
-        print(resp)
-        self.inGame = true
-                
+        while self.inGame == false{
             
+            var data = DataToSend()
+            data.looking_for_game = true
+            let resp = net.send(data: data)
+            print("RESPONSE:", resp)
+            if resp.in_game!{
+                self.startingVelocities = resp.initial_velocities!
+                self.starting = resp.starting!
+                self.inGame = true
+                self.ready.text = "Ready"
+            }
+            
+        }
         
         
-        ball.position = CGPoint(x:0, y:-300)
-        
+        if self.starting{ball.position = CGPoint(x:0, y:300)}
+        if !self.starting{ball.position = CGPoint(x:0, y:-300)}
+            
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2){
             self.ready.text = ""
             self.ready.fontSize = 100
             let velocity: Int! = self.startingVelocities[self.pointNumber]
-            self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))
+            if self.starting{self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: -20))}
+            if !self.starting{self.ball.physicsBody?.applyImpulse(CGVector(dx: velocity, dy: 20))}
             self.score = [0,0]
             self.playerTwoScore.text = "0"
             self.playerOneScore.text = "0"
@@ -97,7 +107,7 @@ class GameScene: SKScene {
         }
         
         if score[1] == 5{
-            inGame = false
+            self.inGame = false
             ball.position = CGPoint(x:500, y:0)
             logo.texture = SKTexture(imageNamed: "Logo")
             pong.text = "Player 2 Wins!"
@@ -106,7 +116,7 @@ class GameScene: SKScene {
         }
 
         if score[0] == 5{
-            inGame = false
+            self.inGame = false
             ball.position = CGPoint(x:500, y:0)
             logo.texture = SKTexture(imageNamed: "Logo")
             pong.text = "Player 1 Wins!"
@@ -137,9 +147,17 @@ class GameScene: SKScene {
     //when the user first taps the screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        if !self.inGame{
+            pong.text = ""
+            logo.texture = SKTexture(imageNamed: "Nothing")
+            playerOneScore.text = "0"
+            playerTwoScore.text = "0"
+            startGame()
+        }
+        
         for touch in touches {
             
-            if inGame == true{
+            if self.inGame{
                 //move the paddle to the location
                 let location = touch.location(in: self)
                 mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
@@ -154,15 +172,7 @@ class GameScene: SKScene {
         
         for touch in touches {
             
-            if inGame == false{
-                pong.text = ""
-                logo.texture = SKTexture(imageNamed: "Nothing")
-                playerOneScore.text = "0"
-                playerTwoScore.text = "0"
-                startGame()
-            }
-            
-            if inGame == true{
+            if self.inGame{
                 let location = touch.location(in: self)
                 mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
             }
@@ -181,13 +191,11 @@ class GameScene: SKScene {
             addScore(playerWhoWon: mainPaddle)
         }
         
-        if inGame == true{
+        if self.inGame{
             
             var data = DataToSend()
             data.paddle_position = Int(Float(mainPaddle.position.x))
-            
             let resp = net.send(data: data)
-            
             if resp.enemy_paddle_position != nil{
                 enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
             }
