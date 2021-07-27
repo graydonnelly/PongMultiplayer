@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //initial variable setup
     var ball = SKSpriteNode()
@@ -28,6 +28,9 @@ class GameScene: SKScene {
     var pointNumber = 0
     let net = Network()
     
+    var x = 0
+    
+    
     override func didMove(to view: SKView) {
         
         //assign sprite nodes
@@ -39,6 +42,15 @@ class GameScene: SKScene {
         ready = self.childNode(withName: "Ready") as! SKLabelNode
         logo = self.childNode(withName: "Logo") as! SKSpriteNode
         pong = self.childNode(withName: "Pong") as! SKLabelNode
+        
+        mainPaddle.name = "main"
+        
+        //setup contact
+        physicsWorld.contactDelegate = self
+        //ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+        mainPaddle.physicsBody!.contactTestBitMask = mainPaddle.physicsBody!.collisionBitMask
+        
+        self.ball.physicsBody?.isDynamic = true
         
         //setup border
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -61,7 +73,7 @@ class GameScene: SKScene {
             var data = DataToSend()
             data.looking_for_game = true
             let resp = net.send(data: data)
-            print("RESPONSE:", resp)
+            //print("RESPONSE:", resp)
             if resp.in_game!{
                 self.startingVelocities = resp.initial_velocities!
                 self.starting = resp.starting!
@@ -87,11 +99,16 @@ class GameScene: SKScene {
         }
     }
     
+    func moveBall(dx: CGFloat, dy: CGFloat){
+        ball.physicsBody!.velocity.dx = dx
+        ball.physicsBody!.velocity.dy = dy
+    }
     
     func addScore(playerWhoWon: SKSpriteNode){
         
         ready.text = "Ready"
         ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        moveBall(dx:100,dy:100)
         self.pointNumber += 1
         
         if playerWhoWon == mainPaddle{
@@ -177,9 +194,28 @@ class GameScene: SKScene {
                 mainPaddle.run(SKAction.moveTo(x: location.x, duration: 0))
             }
         
-      
     }
     
+    }
+    
+    //called when there is contact
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+        
+        if firstBody.node == mainPaddle || secondBody.node == mainPaddle{
+            var data = DataToSend()
+            data.ball_position_x = Float(ball.position.x)
+            data.ball_position_y = Float(ball.position.y)
+            data.ball_velocity_x = Float(ball.physicsBody!.velocity.dx)
+            data.ball_velocity_y = Float(ball.physicsBody!.velocity.dy)
+            data.should_update_ball = true
+            net.send(data: data)
+            
+        }
+        
+        
     }
     
     //called every frame
@@ -194,14 +230,26 @@ class GameScene: SKScene {
         if self.inGame{
             
             var data = DataToSend()
-            data.paddle_position = Int(Float(mainPaddle.position.x))
+            data.paddle_position = Float(mainPaddle.position.x)
             let resp = net.send(data: data)
             if resp.enemy_paddle_position != nil{
                 enemyPaddle.run(SKAction.moveTo(x: CGFloat(resp.enemy_paddle_position!), duration: 0))
             }
-            
-    
-            
+            if resp.should_update_ball == true{
+                ball.position.x = CGFloat(resp.ball_position_x!)
+                ball.position.y = CGFloat(resp.ball_position_y!)
+                ball.physicsBody!.velocity.dx = CGFloat(resp.ball_velocity_x!)
+                ball.physicsBody!.velocity.dy = CGFloat(resp.ball_velocity_y!)
+                
+                //self.ball.physicsBody?.velocity = CGVector(dx: CGFloat(resp.ball_velocity_x!), dy: CGFloat(resp.ball_velocity_y!))
+                
+                ball.position = CGPoint(x:0,y:0)
+                moveBall(dx: 100, dy: 100)
+                
+                print(x)
+                x += 1
+                
+            }
             
             
         }

@@ -40,9 +40,7 @@ class Network {
     func send(data: DataToSend) -> DataToReceive {
         
         let jsonData = try! JSONEncoder().encode(data)
-        print("jsonData:", jsonData)
         let jsonString = String(data: jsonData, encoding: .utf8)!
-        print("jsonString:", jsonString)
         
         let errorMessage = DataToReceive(error: "There was error dumbass")
         
